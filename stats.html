@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>healtybite · Resultados</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body { padding-bottom: 40px; }
+    .dash { padding-top: 18px; }
+    .dash h2 { font-size: 18px; margin-bottom: 12px; }
+    .panel { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 16px; margin-bottom: 14px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; }
+    .filters label { font-size: 12px; font-weight: 600; display: grid; gap: 4px; }
+    .filters select { font: inherit; padding: 9px 10px; border-radius: 10px; border: 1px solid var(--line); background: #fff; color: var(--teal); min-width: 150px; }
+    .filters .check { display: flex; align-items: center; gap: 6px; font-weight: 500; font-size: 13px; padding-bottom: 8px; }
+    .filters .btn { padding: 9px 14px; }
+    .btn--outline { background: #fff; border: 1px solid var(--line); color: var(--teal); }
+    .kpis { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 14px; }
+    .kpi { background: var(--card); border-radius: 16px; box-shadow: var(--shadow); padding: 14px; }
+    .kpi span { font-size: 12px; color: var(--muted); display: block; }
+    .kpi strong { font: 700 26px var(--head); display: block; margin-top: 2px; }
+    .kpi em { font-style: normal; font-size: 12px; color: var(--muted); }
+    .kpi--main { background: var(--teal); color: #fff; }
+    .kpi--main span, .kpi--main em { color: #B9CFCC; }
+    .funnel-row { display: grid; grid-template-columns: 130px 1fr 92px; gap: 10px; align-items: center; padding: 7px 0; font-size: 14px; }
+    .funnel-row .lbl { font-weight: 600; }
+    .bar { height: 26px; background: var(--bg); border-radius: 8px; overflow: hidden; }
+    .bar i { display: block; height: 100%; background: var(--green); border-radius: 8px; min-width: 2px; }
+    .bar--main i { background: var(--teal); }
+    .funnel-row .num { text-align: right; font-variant-numeric: tabular-nums; }
+    .funnel-row .num small { display: block; color: var(--muted); font-size: 11px; }
+    .rank-grid { display: grid; gap: 14px; }
+    .rank-row { display: grid; grid-template-columns: 1fr 40px; gap: 4px 10px; font-size: 13px; padding: 5px 0; }
+    .rank-row .bar { grid-column: 1 / -1; height: 8px; }
+    .rank-row .num { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+    th, td { padding: 8px 6px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
+    th:first-child, td:first-child { text-align: left; }
+    th { font-size: 11px; text-transform: uppercase; letter-spacing: .03em; color: var(--muted); font-weight: 600; }
+    .scroll-x { overflow-x: auto; margin: 0 -16px; padding: 0 16px; }
+    td.hi { color: var(--green-d); font-weight: 700; }
+    .slots-chart { display: flex; gap: 4px; align-items: flex-end; height: 160px; padding-top: 10px; }
+    .slots-chart div { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; gap: 4px; font-size: 10px; color: var(--muted); }
+    .slots-chart b { display: block; width: 100%; background: var(--green); border-radius: 5px 5px 0 0; min-height: 2px; }
+    .slots-chart .n { color: var(--teal); font-weight: 600; font-size: 11px; }
+    .slots-chart .t { writing-mode: vertical-rl; transform: rotate(180deg); }
+    .banner { background: #FFF1DA; color: #7A4A00; border-radius: 12px; padding: 10px 14px; font-size: 13px; margin-bottom: 14px; }
+    .lock { max-width: 380px; margin: 60px auto; text-align: center; }
+    .lock input { width: 100%; font: inherit; padding: 13px; border-radius: 12px; border: 1px solid var(--line); margin: 14px 0 10px; }
+    .note { font-size: 12px; color: var(--muted); margin: 8px 0 0; }
+    @media (min-width: 720px) {
+      .kpis { grid-template-columns: repeat(5, 1fr); }
+      .rank-grid { grid-template-columns: repeat(3, 1fr); }
+      .funnel-row { grid-template-columns: 170px 1fr 110px; }
+    }
+  </style>
+  <script src="js/config.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <span class="logo"><span class="logo__mark" aria-hidden="true"></span>healtybite</span>
+      <span class="small" style="color:#B9CFCC">Resultados del pretotipo</span>
+    </div>
+  </header>
+
+  <main class="wrap dash">
+    <div id="lock" class="lock panel" hidden>
+      <h2>Dashboard privado</h2>
+      <p class="muted small">Abre esta página con <code>stats.html?key=TU_CLAVE</code> o escríbela aquí.</p>
+      <form id="lockForm"><input id="lockKey" type="password" placeholder="Clave" autocomplete="off"><button class="btn btn--primary btn--block">Entrar</button></form>
+      <p class="form-error" id="lockErr" hidden></p>
+    </div>
+
+    <div id="app" hidden>
+      <div id="banner" class="banner" hidden></div>
+
+      <div class="panel filters">
+        <label>Fuente (utm_source)<select id="fSource"></select></label>
+        <label>Día<select id="fDay"></select></label>
+        <label class="check"><input type="checkbox" id="fTest" checked> Excluir pruebas (utm_source=test)</label>
+        <button class="btn btn--outline" id="reload">Actualizar</button>
+        <button class="btn btn--outline" id="csv">Descargar CSV</button>
+        <span class="small muted" id="updated" style="margin-left:auto"></span>
+      </div>
+
+      <div class="kpis" id="kpis"></div>
+
+      <section class="panel">
+        <h2>Embudo (sesiones únicas)</h2>
+        <div id="funnel"></div>
+        <p class="note">% = sobre visitas · (↳ %) = sobre el paso anterior. “Clic en Ordenar” es la señal principal de intención de compra.</p>
+      </section>
+
+      <section class="panel">
+        <h2>Ranking de platillos</h2>
+        <div class="rank-grid">
+          <div><h4 class="small muted">Por vistas de detalle</h4><div id="rankViews"></div></div>
+          <div><h4 class="small muted">Por unidades agregadas al carrito</h4><div id="rankCart"></div></div>
+          <div><h4 class="small muted">Por unidades en clic “Ordenar”</h4><div id="rankOrders"></div></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Por fuente de tráfico</h2>
+        <div class="scroll-x"><table id="bySource"></table></div>
+        <p class="note">Ignora los filtros de fuente para poder comparar segmentos. Verde = mejor tasa de clic en Ordenar.</p>
+      </section>
+
+      <section class="panel">
+        <h2>Horarios de recogida más elegidos</h2>
+        <div class="slots-chart" id="slotsChart"></div>
+        <p class="note">Horario seleccionado al dar clic en Ordenar (último por sesión).</p>
+      </section>
+
+      <section class="panel">
+        <h2>Por día</h2>
+        <div class="scroll-x"><table id="byDay"></table></div>
+      </section>
+    </div>
+  </main>
+
+  <script src="js/stats.js"></script>
+</body>
+</html>

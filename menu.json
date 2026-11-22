@@ -1,0 +1,79 @@
+{
+  "currency": "MXN",
+  "categories": [
+    { "id": "todos", "label": "Todos" },
+    { "id": "alto-proteina", "label": "Alto en proteína" },
+    { "id": "vegetariano", "label": "Vegetariano" },
+    { "id": "snack", "label": "Snacks" },
+    { "id": "bebida", "label": "Bebidas" }
+  ],
+  "items": [
+    {
+      "id": "bowl-pollo-quinoa",
+      "name": "Bowl pollo y quinoa",
+      "price": 99,
+      "protein": "38 g proteína",
+      "kcal": 560,
+      "tags": ["alto-proteina", "mas-pedido"],
+      "description": "Pollo a la plancha, quinoa, aguacate, elote, jitomate cherry y aderezo de limón.",
+      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=700&q=70&auto=format&fit=crop"
+    },
+    {
+      "id": "wrap-atun",
+      "name": "Wrap de atún",
+      "price": 89,
+      "protein": "30 g proteína",
+      "kcal": 480,
+      "tags": ["alto-proteina"],
+      "description": "Tortilla integral con atún, lechuga, pepino, zanahoria y yogurt con chipotle.",
+      "image": "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=700&q=70&auto=format&fit=crop"
+    },
+    {
+      "id": "bowl-veggie-huevo",
+      "name": "Bowl veggie con huevo",
+      "price": 85,
+      "protein": "24 g proteína",
+      "kcal": 490,
+      "tags": ["vegetariano"],
+      "description": "Arroz integral, huevo cocido, garbanzo rostizado, espinaca, pepino y hummus.",
+      "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=700&q=70&auto=format&fit=crop"
+    },
+    {
+      "id": "ensalada-pasta-pollo",
+      "name": "Ensalada de pasta con pollo",
+      "price": 95,
+      "protein": "32 g proteína",
+      "kcal": 610,
+      "tags": ["alto-proteina"],
+      "description": "Pasta integral fría, pollo, pesto ligero, jitomate, arúgula y queso panela.",
+      "image": "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=700&q=70&auto=format&fit=crop"
+    },
+    {
+      "id": "fruta-yogurt",
+      "name": "Fruta + yogurt griego",
+      "price": 49,
+      "protein": "Snack",
+      "kcal": 230,
+      "tags": ["snack", "vegetariano"],
+      "description": "Yogurt griego natural con fruta de temporada, granola y un toque de miel.",
+      "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=700&q=70&auto=format&fit=crop"
+    },
+    {
+      "id": "smoothie-proteina",
+      "name": "Smoothie de proteína",
+      "price": 59,
+      "protein": "Bebida",
+      "kcal": 260,
+      "tags": ["bebida", "vegetariano"],
+      "description": "Plátano, crema de cacahuate, avena, leche y proteína de suero. 450 ml.",
+      "image": "https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=700&q=70&auto=format&fit=crop"
+    }
+  ],
+  "tagLabels": {
+    "alto-proteina": "Alto en proteína",
+    "vegetariano": "Vegetariano",
+    "snack": "Snack",
+    "bebida": "Bebida",
+    "mas-pedido": "Más pedido"
+  }
+}

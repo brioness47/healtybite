@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>healtybite · No hagas filas</title>
+  <meta name="description" content="Comida saludable y accesible en el campus. Pide en línea y recoge sin hacer fila.">
+  <meta name="theme-color" content="#16393B">
+  <meta property="og:title" content="healtybite · No hagas filas">
+  <meta property="og:description" content="Bowls, wraps y snacks altos en proteína desde $49. Pide y recoge entre clases.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2316393B'/%3E%3Cpath d='M14 30h36a18 18 0 0 1-36 0z' fill='%232DBE6C'/%3E%3Ccircle cx='26' cy='24' r='5' fill='%23F4B740'/%3E%3Ccircle cx='38' cy='23' r='4' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/config.js"></script>
+  <script src="js/tracker.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a href="#" class="logo" aria-label="healtybite inicio">
+        <span class="logo__mark" aria-hidden="true"></span>healtybite
+      </a>
+      <button class="cart-btn" id="cartBtn" aria-label="Abrir carrito">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 6h15l-1.5 9h-12zM6 6 5 3H2m5 18a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>
+        <span class="cart-btn__badge" id="cartBadge" hidden>0</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero__inner">
+        <div class="hero__text">
+          <span class="pill pill--light">● Pick-to-go · Campus Tec</span>
+          <h1>No hagas filas.</h1>
+          <p class="hero__sub">Comida saludable desde <strong>$49</strong>. Pide entre clases y recoge tu bowl en el puesto, listo a la hora que elijas.</p>
+          <div class="hero__cta">
+            <a href="#menu" class="btn btn--primary btn--lg">Ver menú</a>
+            <span class="hero__note">Listo en tu horario · 12:00–16:00</span>
+          </div>
+        </div>
+        <ul class="hero__stats" aria-label="Beneficios">
+          <li><strong>0 min</strong><span>de fila</span></li>
+          <li><strong>$49–99</strong><span>por comida</span></li>
+          <li><strong>hasta 38 g</strong><span>de proteína</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="how wrap" aria-label="Cómo funciona">
+      <div class="how__step"><span>1</span><p><strong>Pide aquí</strong>Elige tu platillo</p></div>
+      <div class="how__step"><span>2</span><p><strong>Elige hora</strong>Franjas de 15 min</p></div>
+      <div class="how__step"><span>3</span><p><strong>Recoge</strong>Sin fila, en 1 min</p></div>
+    </section>
+
+    <section id="menu" class="menu wrap">
+      <div class="section-head">
+        <h2>Menú de hoy</h2>
+        <span class="muted small" id="menuCount"></span>
+      </div>
+      <div class="chips" id="chips" role="tablist" aria-label="Filtrar menú"></div>
+      <div class="grid" id="grid" aria-live="polite">
+        <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__brand"><span class="logo__mark" aria-hidden="true"></span>healtybite</div>
+      <p class="small">Comida saludable y accesible para estudiantes · Pick-to-go en campus.</p>
+      <details class="privacy">
+        <summary>Aviso de privacidad</summary>
+        <p>Este sitio mide de forma <strong>anónima</strong> cómo se usa la página: páginas vistas, platillos consultados y agregados al carrito, horario elegido, clic en “Ordenar”, tiempo en la página, scroll y la fuente de la visita (por ejemplo, qué código QR escaneaste). Usamos un identificador aleatorio que no te identifica. No usamos cookies de publicidad.</p>
+        <p>Tu <strong>correo es opcional</strong> y solo lo usaremos para avisarte de la apertura. Nunca pedimos ni guardamos datos de tarjeta. Para borrar tu correo escríbenos y lo eliminamos.</p>
+      </details>
+      <p class="small muted">© <span id="year"></span> healtybite</p>
+    </div>
+  </footer>
+
+  <!-- Barra flotante del carrito (móvil) -->
+  <button class="cartbar" id="cartBar" hidden>
+    <span class="cartbar__qty" id="cartBarQty">0</span>
+    <span>Ver carrito</span>
+    <span class="cartbar__total" id="cartBarTotal">$0</span>
+  </button>
+
+  <!-- Detalle de platillo -->
+  <div class="sheet" id="itemSheet" role="dialog" aria-modal="true" aria-labelledby="itemTitle" hidden>
+    <div class="sheet__backdrop" data-close></div>
+    <div class="sheet__panel">
+      <button class="sheet__close" data-close aria-label="Cerrar">×</button>
+      <img class="sheet__img" id="itemImg" alt="">
+      <div class="sheet__body">
+        <div class="tags" id="itemTags"></div>
+        <h3 id="itemTitle"></h3>
+        <p class="muted" id="itemDesc"></p>
+        <div class="nutri">
+          <div><strong id="itemProtein"></strong><span>Proteína</span></div>
+          <div><strong id="itemKcal"></strong><span>kcal aprox.</span></div>
+          <div><strong>~1 min</strong><span>recogida</span></div>
+        </div>
+        <div class="sheet__actions">
+          <div class="stepper" aria-label="Cantidad">
+            <button type="button" id="qtyMinus" aria-label="Menos">−</button>
+            <span id="qtyVal">1</span>
+            <button type="button" id="qtyPlus" aria-label="Más">+</button>
+          </div>
+          <button class="btn btn--primary btn--grow" id="addBtn">Agregar · <span id="addPrice"></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Carrito -->
+  <div class="sheet" id="cartSheet" role="dialog" aria-modal="true" aria-labelledby="cartTitle" hidden>
+    <div class="sheet__backdrop" data-close></div>
+    <div class="sheet__panel sheet__panel--cart">
+      <button class="sheet__close" data-close aria-label="Cerrar">×</button>
+      <div class="sheet__body">
+        <h3 id="cartTitle">Tu pedido</h3>
+        <ul class="cart-list" id="cartList"></ul>
+        <p class="empty" id="cartEmpty">Tu carrito está vacío. <a href="#menu" data-close>Ver menú</a></p>
+
+        <div id="cartFooter">
+          <div class="pickup">
+            <div class="pickup__head">
+              <h4>Horario de recogida</h4>
+              <span class="small muted" id="pickupDay"></span>
+            </div>
+            <p class="small muted" id="pickupPlace"></p>
+            <div class="slots" id="slots" role="radiogroup" aria-label="Horario de recogida"></div>
+          </div>
+          <div class="totals">
+            <div><span>Subtotal</span><span id="subtotal">$0</span></div>
+            <div class="muted small"><span>Comisión</span><span>$0</span></div>
+            <div class="totals__grand"><span>Total</span><span id="total">$0</span></div>
+          </div>
+          <button class="btn btn--primary btn--lg btn--block" id="orderBtn" disabled>Elige un horario</button>
+          <p class="small muted center">Pagas al confirmar. Sin filas, sin esperas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Puerta falsa (MODE = fakedoor) -->
+  <div class="sheet sheet--center" id="fakeDoor" role="dialog" aria-modal="true" aria-labelledby="fdTitle" hidden>
+    <div class="sheet__backdrop"></div>
+    <div class="sheet__panel sheet__panel--msg">
+      <div class="msg-icon" aria-hidden="true">✓</div>
+      <h3 id="fdTitle">¡Gracias!</h3>
+      <p><strong>healtybite aún no abre en el campus.</strong> Estamos midiendo qué platillos quieren los estudiantes.</p>
+      <p>Déjanos tu correo y te avisamos cuando abramos, con <strong id="fdDiscount">tu primer bowl con descuento</strong>.</p>
+      <form id="emailForm" class="email-form" novalidate>
+        <label for="emailInput" class="sr-only">Correo electrónico (opcional)</label>
+        <input id="emailInput" type="email" inputmode="email" autocomplete="email" placeholder="tu-correo@tec.mx (opcional)">
+        <p class="form-error" id="emailError" hidden>Revisa tu correo.</p>
+        <button class="btn btn--primary btn--block btn--lg" type="submit">Avísenme</button>
+      </form>
+      <div id="emailDone" hidden>
+        <p class="done">¡Listo! Te escribiremos cuando abramos. 🎉</p>
+      </div>
+      <button class="btn btn--ghost btn--block" id="fdClose">Volver al menú</button>
+      <p class="small muted">No se realizó ningún cargo. Tu correo es opcional.</p>
+    </div>
+  </div>
+
+  <!-- Preventa (MODE = preventa) -->
+  <div class="sheet sheet--center" id="checkout" role="dialog" aria-modal="true" aria-labelledby="coTitle" hidden>
+    <div class="sheet__backdrop" data-close></div>
+    <div class="sheet__panel sheet__panel--msg">
+      <button class="sheet__close" data-close aria-label="Cerrar">×</button>
+      <div id="coForm">
+        <h3 id="coTitle">Confirma tu pedido</h3>
+        <ul class="co-summary" id="coSummary"></ul>
+        <form id="checkoutForm" class="email-form" novalidate>
+          <label class="field"><span>Nombre</span><input id="coName" autocomplete="given-name" required maxlength="60" placeholder="Tu nombre"></label>
+          <label class="field"><span>Correo</span><input id="coEmail" type="email" inputmode="email" autocomplete="email" required placeholder="tu-correo@tec.mx"></label>
+          <label class="field"><span>Horario de recogida</span><select id="coTime" required></select></label>
+          <p class="form-error" id="coError" hidden>Completa nombre, correo válido y horario.</p>
+          <button class="btn btn--primary btn--block btn--lg" type="submit">Confirmar pedido · <span id="coTotal"></span></button>
+        </form>
+        <p class="small muted">El pago se hace en Mercado Pago. healtybite nunca pide ni guarda datos de tarjeta.</p>
+      </div>
+      <div id="coDone" hidden>
+        <div class="msg-icon" aria-hidden="true">✓</div>
+        <h3>¡Pedido apartado!</h3>
+        <p>Folio <strong id="coFolio"></strong> · Recoge a las <strong id="coDoneTime"></strong></p>
+        <p>Para confirmarlo, paga en Mercado Pago:</p>
+        <a class="btn btn--primary btn--block btn--lg" id="payLink" target="_blank" rel="noopener">Pagar <span id="payTotal"></span> en Mercado Pago</a>
+        <button class="btn btn--ghost btn--block" data-close>Volver al menú</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
